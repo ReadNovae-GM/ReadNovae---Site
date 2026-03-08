@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadNovae - Plataforma Profissional de Cursos Premium</title>
+    <style>
+        /* RESET E VARIÁVEIS - DESIGN SYSTEM AVANÇADO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --bg-card: #111111;
+            --bg-card-hover: #1A1A1A;
+            --accent: #FF6B00;
+            --accent-hover: #FF8533;
+            --accent-soft: rgba(255, 107, 0, 0.1);
+            --accent-glow: rgba(255, 107, 0, 0.3);
+            --text-primary: #FF6B00;
+            --text-secondary: rgba(255, 107, 0, 0.85);
+            --text-muted: rgba(255, 107, 0, 0.5);
+            --border-color: rgba(255, 107, 0, 0.15);
+            --border-color-hover: rgba(255, 107, 0, 0.3);
+            --shadow-sm: 0 5px 15px rgba(255, 107, 0, 0.1);
+            --shadow-md: 0 15px 30px rgba(255, 107, 0, 0.15);
+            --shadow-lg: 0 25px 50px rgba(255, 107, 0, 0.2);
+            --shadow-glow: 0 0 30px rgba(255, 107, 0, 0.3);
+            --gradient-primary: linear-gradient(135deg, #FF6B00, #FFA500);
+            --gradient-dark: linear-gradient(135deg, #000000, #0A0A0A);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.03) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* HEADER ULTRA PROFISSIONAL */
+        .header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .admin-toolbar {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        /* BOTÕES ICONE ULTRA PREMIUM */
+        .btn-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            transform: translate(-50%, -50%);
+            transition: width 0.8s, height 0.8s;
+            z-index: 0;
+        }
+
+        .btn-icon:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-icon:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: var(--text-primary);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: var(--transition-smooth);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-icon:hover svg {
+            stroke: var(--accent-hover);
+            transform: rotate(180deg);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            max-width: 1600px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* HERO SECTION ULTRA MODERNA */
+        .hero {
+            text-align: center;
+            padding: 6rem 3rem;
+            background: var(--gradient-dark);
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,107,0,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #FF6B00, #FFA500, #FF6B00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradient 5s linear infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* GRID DE CURSOS - 5 POR FILEIRA */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        @media (max-width: 1400px) {
+            .courses-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .courses-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CARDS ULTRA PREMIUM */
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,107,0,0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .course-card:hover::before {
+            left: 100%;
+        }
+
+        .course-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,107,0,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,107,0,0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .course-card:hover::after {
+            opacity: 1;
+        }
+
+        /* CAPA DO CURSO */
+        .course-cover {
+            width: 100%;
+            height: 160px;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--gradient-dark);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .course-cover:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .course-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .course-cover:hover img {
+            transform: scale(1.1);
+        }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .course-cover:hover .cover-overlay {
+            opacity: 1;
+        }
+
+        .cover-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .cover-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .course-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 15px rgba(255,107,0,0.5));
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .course-description {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.2rem;
+            margin-top: auto;
+        }
+
+        .course-price {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .course-btn {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--text-primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .course-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.4s;
+            z-index: -1;
+        }
+
+        .course-btn:hover::before {
+            left: 0;
+        }
+
+        .course-btn:hover {
+            color: var(--bg-primary);
+            border-color: transparent;
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* BADGE DE COMPRADO */
+        .purchased-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: var(--bg-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-glow);
+            z-index: 10;
+        }
+
+        /* MODAL ULTRA PREMIUM */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent);
+            border-radius: 40px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-lg), 0 0 100px rgba(255,107,0,0.3);
+            animation: slideUp 0.4s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .close-modal {
+            font-size: 3rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .close-modal:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* FORMULÁRIOS PREMIUM */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 5px var(--accent-soft);
+            transform: scale(1.02);
+        }
+
+        /* CHECKOUT MODAL */
+        .checkout-course {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .checkout-course img {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .checkout-info {
+            flex: 1;
+        }
+
+        .checkout-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .payment-method:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .payment-method.selected {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .payment-method .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* PDF VIEWER */
+        .pdf-viewer {
+            width: 100%;
+            height: 600px;
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            margin-top: 2rem;
+            background: var(--bg-card);
+        }
+
+        .pdf-list {
+            margin: 2rem 0;
+        }
+
+        .pdf-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .pdf-item:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pdf-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pdf-icon {
+            font-size: 2rem;
+        }
+
+        .pdf-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* BOTÕES DE AÇÃO */
+        .action-buttons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            flex: 1;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--text-primary);
+            padding: 1.2rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* MENSAGEM PÓS COMPRA */
+        .success-message {
+            text-align: center;
+            padding: 4rem;
+            background: var(--bg-card);
+            border-radius: 40px;
+            border: 2px solid var(--accent);
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            70% { box-shadow: 0 0 0 20px rgba(255,107,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,107,0,0); }
+        }
+
+        .success-message .icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-message h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">ReadNovae</div>
+            <div class="admin-toolbar">                
+                <!-- ENGRENAGEM -->
+                <button class="btn-icon" onclick="openAdminModal()" title="Gerenciar Cursos">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"/>
+                        <path d="M19.4 15C18.9 16 18.1 16.7 17.3 17.1L16.5 19.3C16.3 19.7 15.9 20 15.5 20H8.5C8.1 20 7.7 19.7 7.5 19.3L6.7 17.1C5.9 16.7 5.1 16 4.6 15L2.5 14.5C2.2 14.5 1.9 14.2 2 13.9L3.3 8.1C3.4 7.8 3.7 7.6 4 7.5L6.1 7C6.6 6.1 7.4 5.3 8.3 4.8L8.5 2.5C8.5 2.2 8.8 2 9.1 2H14.9C15.2 2 15.5 2.2 15.5 2.5L15.7 4.8C16.6 5.3 17.4 6.1 17.9 7L20 7.5C20.3 7.6 20.6 7.9 20.7 8.1L22 13.9C22.1 14.2 21.8 14.5 21.5 14.5L19.4 15Z"/>
+                    </svg>
+                </button>
+                
+                <!-- SALVAR -->
+                <button class="btn-icon" onclick="saveSiteData()" title="Salvar Configurações">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16L21 8V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21Z"/>
+                        <path d="M17 21V13H7V21"/>
+                        <path d="M7 3V8H15"/>
+                    </svg>
+                </button>
+                
+                <!-- CARREGAR -->
+                <button class="btn-icon" onclick="loadSiteData()" title="Carregar Configurações">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"/>
+                        <path d="M7 10L12 15L17 10"/>
+                        <path d="M12 15V3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1 class="floating">Transforme seu Conhecimento</h1>
+            <p>A plataforma mais avançada para educação digital com design ultra profissional</p>
+        </section>
+
+        <!-- CABEÇALHO DOS CURSOS -->
+        <section>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800;">Cursos Disponíveis</h2>
+                <button class="btn-primary" onclick="openAdminModal()" style="width: auto;">+ Novo Curso</button>
+            </div>
+            
+            <!-- GRID DE CURSOS - 5 POR FILEIRA -->
+            <div class="courses-grid" id="coursesContainer">
+                <!-- Cursos serão carregados aqui -->
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL ADMIN -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Gerenciar Cursos</h2>
+                <span class="close-modal" onclick="closeAdminModal()">&times;</span>
+            </div>
+            
+            <form id="courseForm" onsubmit="addCourse(event)">
+                <div class="form-group">
+                    <label>Nome do Curso</label>
+                    <input type="text" class="form-control" id="courseName" required placeholder="Ex: Marketing Digital Avançado">
+                </div>
+                
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea class="form-control" id="courseDesc" required placeholder="Descreva o curso em detalhes..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Preço (R$)</label>
+                    <input type="text" class="form-control" id="coursePrice" required placeholder="Ex: 297,00">
+                </div>
+                
+                <div class="form-group">
+                    <label>Ícone/Emoji</label>
+                    <input type="text" class="form-control" id="courseIcon" required placeholder="Ex: 🚀, 💻, 📚" value="📚">
+                </div>
+                
+                <div class="form-group">
+                    <label>Imagem de Capa</label>
+                    <input type="file" class="form-control" id="coverImage" accept="image/*" onchange="handleCoverImage(event)">
+                    <small style="opacity: 0.7; display: block; margin-top: 0.5rem;">Selecione uma imagem para capa do curso</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Materiais PDF</label>
+                    <input type="file" class="form-control" id="pdfInput" accept=".pdf" multiple onchange="handlePDFs(event)">
+                    <small style="opacity: 0.7; display: block; margin-top: 0.5rem;">Você pode selecionar múltiplos PDFs</small>
+                </div>
+                
+                <!-- Lista de PDFs adicionados -->
+                <div class="pdf-list" id="pdfList"></div>
+                
+                <div class="action-buttons">
+                    <button type="submit" class="btn-primary">Adicionar Curso</button>
+                    <button type="button" class="btn-secondary" onclick="exportPDFs()">Exportar PDFs</button>
+                </div>
+            </form>
+            
+            <hr style="border-color: var(--border-color); margin: 2rem 0;">
+            
+            <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Cursos Cadastrados</h3>
+            <div id="adminCourseList">
+                <!-- Lista de cursos para editar/remover -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL VISUALIZAR CURSO -->
+    <div class="modal" id="viewCourseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="viewCourseTitle">Detalhes do Curso</h2>
+                <span class="close-modal" onclick="closeViewModal()">&times;</span>
+            </div>
+            
+            <div id="viewCourseContent">
+                <!-- Conteúdo do curso será carregado aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CHECKOUT -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Finalizar Compra</h2>
+                <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
+            </div>
+            
+            <div id="checkoutContent">
+                <!-- Conteúdo do checkout será carregado aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SUCESSO -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-message">
+                <div class="icon">✅</div>
+                <h3>Compra Realizada com Sucesso!</h3>
+                <p>Parabéns! Agora você tem acesso completo ao curso. Os materiais já estão disponíveis na sua biblioteca.</p>
+                <button class="btn-primary" onclick="closeSuccessModal()" style="margin-top: 2rem;">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PDF VIEWER -->
+    <div class="modal" id="pdfViewerModal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h2>Visualizar PDF</h2>
+                <span class="close-modal" onclick="closePdfViewerModal()">&times;</span>
+            </div>
+            
+            <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // ESTADO GLOBAL DO SITE
+        // ============================================
+        let siteCourses = [];
+        let pdfFiles = [];
+        let currentCoverImage = null;
+        let purchasedCourses = JSON.parse(localStorage.getItem('purchasedCourses')) || [];
+
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedData();
+            renderCourses();
+        });
+
+        // ============================================
+        // FUNÇÕES DO MODAL ADMIN
+        // ============================================
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'flex';
+            updateAdminCourseList();
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+            // Limpar formulário
+            document.getElementById('courseForm').reset();
+            pdfFiles = [];
+            currentCoverImage = null;
+            updatePDFList();
+        }
+
+        // ============================================
+        // GERENCIAR CAPA
+        // ============================================
+        function handleCoverImage(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                currentCoverImage = {
+                    name: file.name,
+                    data: URL.createObjectURL(file)
+                };
+            }
+        }
+
+        // ============================================
+        // GERENCIAR PDFs
+        // ============================================
+        function handlePDFs(event) {
+            const files = Array.from(event.target.files);
+            files.forEach(file => {
+                if (file.type === 'application/pdf') {
+                    pdfFiles.push({
+                        name: file.name,
+                        size: file.size,
+                        file: file,
+                        data: URL.createObjectURL(file)
+                    });
+                }
+            });
+            updatePDFList();
+        }
+
+        function updatePDFList() {
+            const pdfList = document.getElementById('pdfList');
+            pdfList.innerHTML = pdfFiles.map((pdf, index) => `
+                <div class="pdf-item">
+                    <div class="pdf-info">
+                        <span class="pdf-icon">📄</span>
+                        <span class="pdf-name">${pdf.name}</span>
+                    </div>
+                    <span class="pdf-remove" onclick="removePDF(${index})" style="color: var(--accent); cursor: pointer; font-size: 1.5rem;">✕</span>
+                </div>
+            `).join('');
+        }
+
+        function removePDF(index) {
+            pdfFiles.splice(index, 1);
+            updatePDFList();
+        }
+
+        // ============================================
+        // ADICIONAR CURSO
+        // ============================================
+        function addCourse(event) {
+            event.preventDefault();
+            
+            const course = {
+                id: Date.now(),
+                name: document.getElementById('courseName').value,
+                description: document.getElementById('courseDesc').value,
+                price: document.getElementById('coursePrice').value,
+                icon: document.getElementById('courseIcon').value,
+                coverImage: currentCoverImage,
+                pdfs: pdfFiles.map(pdf => ({
+                    name: pdf.name,
+                    size: pdf.size,
+                    data: pdf.data
+                }))
+            };
+            
+            siteCourses.push(course);
+            
+            // Limpar formulário
+            document.getElementById('courseForm').reset();
+            pdfFiles = [];
+            currentCoverImage = null;
+            updatePDFList();
+            
+            // Atualizar visualizações
+            renderCourses();
+            updateAdminCourseList();
+            saveToLocalStorage();
+            
+            alert('✅ Curso adicionado com sucesso!');
+        }
+
+        // ============================================
+        // REMOVER CURSO
+        // ============================================
+        function removeCourse(courseId) {
+            if (confirm('Tem certeza que deseja remover este curso?')) {
+                siteCourses = siteCourses.filter(c => c.id !== courseId);
+                renderCourses();
+                updateAdminCourseList();
+                saveToLocalStorage();
+            }
+        }
+
+        // ============================================
+        // VISUALIZAR CURSO
+        // ============================================
+        function viewCourse(courseId) {
+            const course = siteCourses.find(c => c.id === courseId);
+            if (!course) return;
+            
+            const isPurchased = purchasedCourses.includes(courseId);
+            
+            const content = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    ${course.coverImage ? 
+                        `<img src="${course.coverImage.data}" alt="${course.name}" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 24px; border: 2px solid var(--accent);">` :
+                        `<div style="font-size: 5rem; margin: 2rem 0;">${course.icon}</div>`
+                    }
+                </div>
+                
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">${course.name}</h3>
+                <p style="margin-bottom: 2rem; line-height: 1.8;">${course.description}</p>
+                
+                <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem;">
+                    <strong style="font-size: 1.2rem;">Preço:</strong>
+                    <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-left: 1rem;">R$ ${course.price}</span>
+                </div>
+                
+                ${isPurchased ? `
+                    <div style="background: var(--bg-card); padding: 2rem; border-radius: 24px; border: 2px solid var(--accent);">
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1.5rem;">📚 Materiais do Curso</h4>
+                        ${course.pdfs && course.pdfs.length > 0 ? 
+                            course.pdfs.map(pdf => `
+                                <div class="pdf-item" onclick="openPDF('${pdf.data}')">
+                                    <div class="pdf-info">
+                                        <span class="pdf-icon">📄</span>
+                                        <span class="pdf-name">${pdf.name}</span>
+                                    </div>
+                                    <span style="color: var(--accent);">Abrir →</span>
+                                </div>
+                            `).join('') :
+                            '<p>Nenhum material disponível</p>'
+                        }
+                    </div>
+                ` : `
+                    <button class="btn-primary" onclick="openCheckout(${course.id})" style="width: 100%;">Comprar Agora</button>
+                `}
+            `;
+            
+            document.getElementById('viewCourseTitle').textContent = course.name;
+            document.getElementById('viewCourseContent').innerHTML = content;
+            document.getElementById('viewCourseModal').style.display = 'flex';
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewCourseModal').style.display = 'none';
+        }
+
+        // ============================================
+        // CHECKOUT
+        // ============================================
+        function openCheckout(courseId) {
+            const course = siteCourses.find(c => c.id === courseId);
+            if (!course) return;
+            
+            const content = `
+                <div class="checkout-course">
+                    ${course.coverImage ? 
+                        `<img src="${course.coverImage.data}" alt="${course.name}">` :
+                        `<div style="font-size: 3rem; text-align: center; width: 120px;">${course.icon}</div>`
+                    }
+                    <div class="checkout-info">
+                        <h3>${course.name}</h3>
+                        <p style="opacity: 0.8;">${course.description.substring(0, 100)}...</p>
+                        <div style="font-size: 2rem; font-weight: 800; margin-top: 1rem;">R$ ${course.price}</div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-bottom: 1rem;">Forma de Pagamento</h4>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPayment(this, 'credit')">
+                        <div class="icon">💳</div>
+                        <div>Cartão de Crédito</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPayment(this, 'pix')">
+                        <div class="icon">📱</div>
+                        <div>PIX</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPayment(this, 'boleto')">
+                        <div class="icon">📄</div>
+                        <div>Boleto</div>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <label style="display: flex; align-items: center; gap: 1rem;">
+                        <input type="checkbox" id="termsCheckbox" style="width: 20px; height: 20px;">
+                        <span>Li e aceito os termos e condições</span>
+                    </label>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-secondary" onclick="closeCheckoutModal()">Cancelar</button>
+                    <button class="btn-primary" onclick="finalizePurchase(${course.id})">Finalizar Compra</button>
+                </div>
+            `;
+            
+            document.getElementById('checkoutContent').innerHTML = content;
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        function selectPayment(element, method) {
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function finalizePurchase(courseId) {
+            const termsChecked = document.getElementById('termsCheckbox')?.checked;
+            const paymentSelected = document.querySelector('.payment-method.selected');
+            
+            if (!paymentSelected) {
+                alert('Selecione uma forma de pagamento');
+                return;
+            }
+            
+            if (!termsChecked) {
+                alert('Você precisa aceitar os termos para continuar');
+                return;
+            }
+            
+            // Adicionar aos cursos comprados
+            if (!purchasedCourses.includes(courseId)) {
+                purchasedCourses.push(courseId);
+                localStorage.setItem('purchasedCourses', JSON.stringify(purchasedCourses));
+            }
+            
+            closeCheckoutModal();
+            openSuccessModal();
+            renderCourses(); // Atualizar interface
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        // ============================================
+        // MODAL DE SUCESSO
+        // ============================================
+        function openSuccessModal() {
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // ============================================
+        // PDF VIEWER
+        // ============================================
+        function openPDF(pdfData) {
+            document.getElementById('pdfViewer').src = pdfData;
+            document.getElementById('pdfViewerModal').style.display = 'flex';
+        }
+
+        function closePdfViewerModal() {
+            document.getElementById('pdfViewerModal').style.display = 'none';
+            document.getElementById('pdfViewer').src = '';
+        }
+
+        // ============================================
+        // RENDERIZAR CURSOS
+        // ============================================
+        function renderCourses() {
+            const container = document.getElementById('coursesContainer');
+            
+            if (siteCourses.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 5rem; background: var(--bg-card); border-radius: 30px; border: 1px solid var(--border-color);">
+                        <h3 style="margin-bottom: 1rem; font-size: 2rem;">Nenhum curso cadastrado</h3>
+                        <p style="opacity: 0.8; margin-bottom: 2rem;">Clique no botão "+ Novo Curso" ou na engrenagem para começar</p>
+                        <button class="btn-primary" onclick="openAdminModal()" style="width: auto;">+ Criar Primeiro Curso</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = siteCourses.map(course => {
+                const isPurchased = purchasedCourses.includes(course.id);
+                
+                return `
+                    <div class="course-card" onclick="viewCourse(${course.id})">
+                        ${isPurchased ? '<div class="purchased-badge">✓ COMPRADO</div>' : ''}
+                        
+                        ${course.coverImage ? 
+                            `<div class="course-cover" onclick="event.stopPropagation()">
+                                <img src="${course.coverImage.data}" alt="${course.name}">
+                                <div class="cover-overlay">
+                                    <div class="cover-actions">
+                                        <button class="cover-btn" onclick="changeCover(${course.id})" title="Trocar capa">🖼️</button>
+                                        <button class="cover-btn" onclick="removeCover(${course.id})" title="Remover capa">✕</button>
+                                    </div>
+                                </div>
+                            </div>` :
+                            `<div class="course-cover" onclick="event.stopPropagation(); addCover(${course.id})" style="display: flex; align-items: center; justify-content: center; background: var(--gradient-dark);">
+                                <span style="font-size: 3rem;">${course.icon}</span>
+                                <div class="cover-overlay">
+                                    <span style="color: white;">Clique para adicionar capa</span>
+                                </div>
+                            </div>`
+                        }
+                        
+                        <h3 class="course-title">${course.name}</h3>
+                        <p class="course-description">${course.description.substring(0, 80)}${course.description.length > 80 ? '...' : ''}</p>
+                        
+                        <div class="course-meta">
+                            <span class="course-price">R$ ${course.price}</span>
+                            <button class="course-btn" onclick="event.stopPropagation(); ${isPurchased ? `viewCourse(${course.id})` : `openCheckout(${course.id})`}">
+                                ${isPurchased ? 'Acessar' : 'Comprar'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ============================================
+        // GERENCIAR CAPAS
+        // ============================================
+        function changeCover(courseId) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const course = siteCourses.find(c => c.id === courseId);
+                    if (course) {
+                        course.coverImage = {
+                            name: file.name,
+                            data: URL.createObjectURL(file)
+                        };
+                        renderCourses();
+                        saveToLocalStorage();
+                    }
+                }
+            };
+            
+            input.click();
+        }
+
+        function removeCover(courseId) {
+            const course = siteCourses.find(c => c.id === courseId);
+            if (course) {
+                course.coverImage = null;
+                renderCourses();
+                saveToLocalStorage();
+            }
+        }
+
+        function addCover(courseId) {
+            changeCover(courseId);
+        }
+
+        // ============================================
+        // LISTA DE CURSOS NO ADMIN
+        // ============================================
+        function updateAdminCourseList() {
+            const container = document.getElementById('adminCourseList');
+            
+            if (siteCourses.length === 0) {
+                container.innerHTML = '<p style="opacity: 0.7; text-align: center; padding: 2rem;">Nenhum curso cadastrado ainda</p>';
+                return;
+            }
+            
+            container.innerHTML = siteCourses.map(course => `
+                <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.2rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        ${course.coverImage ? 
+                            `<img src="${course.coverImage.data}" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">` :
+                            `<span style="font-size: 2rem;">${course.icon}</span>`
+                        }
+                        <div>
+                            <strong>${course.name}</strong>
+                            <br>
+                            <small>R$ ${course.price} | ${course.pdfs?.length || 0} PDF(s)</small>
+                        </div>
+                    </div>
+                    <button onclick="removeCourse(${course.id})" style="background: transparent; border: 1px solid var(--accent); color: var(--text-primary); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">Remover</button>
+                </div>
+            `).join('');
+        }
+
+        // ============================================
+        // SALVAR DADOS
+        // ============================================
+        function saveSiteData() {
+            try {
+                const dataToSave = {
+                    courses: siteCourses,
+                    version: '2.0',
+                    timestamp: new Date().toISOString()
+                };
+                
+                const jsonString = JSON.stringify(dataToSave, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `readnovae-backup-${new Date().toISOString().slice(0,10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                alert('✅ Dados salvos com sucesso! O arquivo de backup foi baixado.');
+            } catch (error) {
+                alert('❌ Erro ao salvar dados: ' + error.message);
+            }
+        }
+
+        // ============================================
+        // CARREGAR DADOS
+        // ============================================
+        function loadSiteData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const loadedData = JSON.parse(e.target.result);
+                        
+                        if (loadedData.courses && Array.isArray(loadedData.courses)) {
+                            siteCourses = loadedData.courses;
+                            renderCourses();
+                            updateAdminCourseList();
+                            saveToLocalStorage();
+                            alert('✅ Dados carregados com sucesso!');
+                        } else {
+                            alert('❌ Arquivo inválido: formato de dados não reconhecido.');
+                        }
+                    } catch (error) {
+                        alert('❌ Erro ao carregar arquivo: ' + error.message);
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        // ============================================
+        // LOCAL STORAGE
+        // ============================================
+        function saveToLocalStorage() {
+            localStorage.setItem('readnovae_courses', JSON.stringify(siteCourses));
+        }
+
+        function loadSavedData() {
+            const saved = localStorage.getItem('readnovae_courses');
+            if (saved) {
+                try {
+                    siteCourses = JSON.parse(saved);
+                } catch (e) {
+                    console.log('Erro ao carregar dados salvos');
+                }
+            }
+        }
+
+        // ============================================
+        // EXPORTAR PDFs
+        // ============================================
+        function exportPDFs() {
+            if (pdfFiles.length === 0) {
+                alert('Nenhum PDF selecionado para exportar');
+                return;
+            }
+            
+            pdfFiles.forEach((pdf, index) => {
+                setTimeout(() => {
+                    const a = document.createElement('a');
+                    a.href = pdf.data;
+                    a.download = pdf.name;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }, index * 500);
+            });
+            
+            alert(`📥 Exportando ${pdfFiles.length} PDF(s)...`);
+        }
+
+        // ============================================
+        // FECHAR MODAIS
+        // ============================================
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
